@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "307991962498",
+    "firebase_url": "https://wake-light-61f40-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "wake-light-61f40",
+    "storage_bucket": "wake-light-61f40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307991962498:android:df615d6a4a22ea790fa59b",
+        "android_client_info": {
+          "package_name": "com.laurenckaefer.wake_light"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307991962498-mghc0l6fs6ltsk2bi7ajic7l9nst8ccd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgfKGVleFKm5jzaadOAClUbZT_n2jTgTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307991962498-mghc0l6fs6ltsk2bi7ajic7l9nst8ccd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
