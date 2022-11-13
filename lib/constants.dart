@@ -117,7 +117,7 @@ void setAlarm(Map mapData) async {
         wakeUpScreen: true,
         fullScreenIntent: true,
         category: NotificationCategory.Alarm,
-        customSound: 'resource://raw/res_security_alarm',
+        //customSound: 'resource://raw/res_security_alarm',
         //customSound: 'String',
         criticalAlert: true,
         displayOnForeground: true,
@@ -139,6 +139,7 @@ void setAlarm(Map mapData) async {
         NotificationActionButton(
           key: "DISMISS",
           label: "dismiss",
+          color: COLOR_LIGHT,
         ),
       ],
 
@@ -201,10 +202,12 @@ void setAlarm(Map mapData) async {
 
 //TODO: needed work
 /*
+o now AlarmScreen
+
 o get alarm to be:
   x fullScreen when open
   o define fullScreen (play Sound and vibrate)
-  o right sound
+  o right sound (maybe in release mode)
 
 o create alarm with correct data (several alarms for each weekday? (maybe with same groupkey or same id))
  */
