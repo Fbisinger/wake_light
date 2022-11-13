@@ -118,6 +118,8 @@ void setAlarm(Map mapData) async {
         fullScreenIntent: true,
         category: NotificationCategory.Alarm,
         customSound: 'resource://raw/res_security_alarm',
+        //customSound: 'String',
+        criticalAlert: true,
         displayOnForeground: true,
         displayOnBackground: true,
         //autoDismissible: true,
@@ -129,6 +131,8 @@ void setAlarm(Map mapData) async {
       schedule: NotificationInterval(
         interval: 5,
         timeZone: timezone,
+        preciseAlarm: true,
+        allowWhileIdle: true,
         //repeats: true,  //time interval must be at least 60 if repeating
       ),
       actionButtons: [
@@ -203,6 +207,11 @@ o get alarm to be:
   o right sound
 
 o create alarm with correct data (several alarms for each weekday? (maybe with same groupkey or same id))
+ */
+
+/*difficulties with AwesomeNotification:
+  debug is not working coherently. Vibrate and show Screen when locked should work
+  also always vibrating
  */
 
 

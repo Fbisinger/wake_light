@@ -44,10 +44,9 @@ class NotificationController {
               channelName: 'Alarms',
               channelDescription: 'Notification tests as alarms',
               importance: NotificationImportance.Max,
-              playSound: true,
-              defaultRingtoneType: DefaultRingtoneType.Alarm,
               soundSource: 'resource://raw/res_security_alarm',
-              //onlyAlertOnce: true,
+              playSound: true,
+              //defaultRingtoneType: DefaultRingtoneType.Alarm,
               //groupAlertBehavior: GroupAlertBehavior.Children,
               defaultPrivacy: NotificationPrivacy.Public,
               defaultColor: COLOR_BACKGROUND,
@@ -59,7 +58,7 @@ class NotificationController {
               //icon: 'alarm',
           )
         ],
-        //debug: true
+        debug: true
     );
 
     initialAction = await AwesomeNotifications()
@@ -67,54 +66,9 @@ class NotificationController {
   }
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod:         NotificationController.onActionReceivedMethod,
-      //if needed: discomment and also add pragma in NotificationController
-      //onNotificationCreatedMethod:    NotificationController.onNotificationCreatedMethod,
-      //onNotificationDisplayedMethod:  NotificationController.onNotificationDisplayedMethod,
-      //onDismissActionReceivedMethod:  NotificationController.onDismissActionReceivedMethod
-    );
-
-    AwesomeNotifications().isNotificationAllowed().then(
-          (isAllowed) {
-        if (!isAllowed) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text('Allow Notifications'),
-              content: const Text('Our app would like to send you notifications'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Don\'t Allow', style: TextStyle(color: COLOR_TEXT_SEC, fontSize: 18),),
-                ),
-                TextButton(
-                  onPressed: () => AwesomeNotifications()
-                      .requestPermissionToSendNotifications()
-                      .then((_) => Navigator.pop(context)),
-                  child: const Text('Allow', style: TextStyle(color: COLOR_LIGHT, fontSize: 18, fontWeight: FontWeight.bold,),),
-                ),
-              ],
-            ),
-          );
-        }
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -224,6 +178,45 @@ class MyPageView extends StatefulWidget {
 
 class _MyPageViewState extends State<MyPageView> {
   final PageController controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod:         NotificationController.onActionReceivedMethod,
+      //if needed: discomment and also add pragma in NotificationController
+      //onNotificationCreatedMethod:    NotificationController.onNotificationCreatedMethod,
+      //onNotificationDisplayedMethod:  NotificationController.onNotificationDisplayedMethod,
+      //onDismissActionReceivedMethod:  NotificationController.onDismissActionReceivedMethod
+    );
+    AwesomeNotifications().isNotificationAllowed().then(
+          (isAllowed) {
+        if (!isAllowed) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Allow Notifications'),
+              content: const Text('Our app would like to send you notifications'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Don\'t Allow', style: TextStyle(color: COLOR_TEXT_SEC, fontSize: 18),),
+                ),
+                TextButton(
+                  onPressed: () => AwesomeNotifications()
+                      .requestPermissionToSendNotifications()
+                      .then((_) => Navigator.pop(context)),
+                  child: const Text('Allow', style: TextStyle(color: COLOR_LIGHT, fontSize: 18, fontWeight: FontWeight.bold,),),
+                ),
+              ],
+            ),
+          );
+        }
+      },
+    );
+  }
 
   void changePage({mode = 'Alarm'}){
     switch (mode) {
